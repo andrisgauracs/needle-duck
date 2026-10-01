@@ -1,0 +1,14 @@
+needle-duck
+Copyright 2026 Andris Gauracs
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This project uses third-party work:
+
+- Needle 3 by Cactus Compute (https://cactuscompute.com/needle), Apache-2.0.
+  Installed from PyPI as cactus-needle; the fine-tuned .cact models in this
+  project's releases are derived from Needle 3 weights.
+- Open Duck Mini and Open Duck Playground by Antoine Pirrone and contributors,
+  Apache-2.0 (see LICENSE-open-duck-mini.txt). BEST_WALK_ONNX_2.onnx is the
+  Open Duck Mini pretrained walking policy; setup.sh clones Open Duck
+  Playground at a pinned commit.

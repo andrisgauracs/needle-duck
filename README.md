@@ -50,7 +50,7 @@ open "Needle Duck Studio.app" # or: .venv/bin/python app/main.py
 The first launch downloads Needle 3 from Hugging Face. Steps 1, 2 and 5 work right away with the base model. For steps 3 and 4 you need fine-tuned models:
 
 - **Train your own:** run the training server below, then use step 3.
-- **Or download them:** grab the `.cact` files from this repo's Releases into `models/`.
+- **Or download them:** grab `duck_20l.cact` and `duck_4l.cact` from this repo's [Releases](../../releases) into `models/`.
 
 macOS asks once for permission to reach devices on your local network (the training server). Click Allow, or turn it on later under System Settings → Privacy & Security → Local Network.
 
@@ -135,3 +135,7 @@ MUJOCO_GL=egl python duck_needle.py --weights models/duck_20l.cact --record demo
 - **Needle 3** by [Cactus Compute](https://cactuscompute.com), Apache-2.0.
 - **Open Duck Mini** (walking policy, `BEST_WALK_ONNX_2.onnx`) and **Open Duck Playground** (robot model) by Antoine Pirrone and contributors, Apache-2.0. See `LICENSE-open-duck-mini.txt`. `setup.sh` clones the Playground at a pinned commit.
 - Built for a [Better Stack](https://www.youtube.com/@betterstack) video.
+
+## License
+
+Apache-2.0. See `LICENSE` and `NOTICE`. Needle 3 and Open Duck Mini / Playground are Apache-2.0 too.
