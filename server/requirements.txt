@@ -1,0 +1,4 @@
+cactus-needle[train,gpu]>=3.0.6
+fastapi
+uvicorn[standard]
+python-multipart

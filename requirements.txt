@@ -1,0 +1,14 @@
+cactus-needle>=3.0.6
+mujoco>=3.3
+onnxruntime
+numpy
+etils
+imageio
+imageio-ffmpeg
+pillow
+sentencepiece
+pywebview
+fastapi
+uvicorn[standard]
+httpx
+python-multipart

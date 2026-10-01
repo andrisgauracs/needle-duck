@@ -1,0 +1,49 @@
+{"cat": "polite", "query": "pretty pretty please waddle forward", "expect": [[{"name": "walk", "arguments": {"direction": "forward"}}]]}
+{"cat": "polite", "query": "PLEASE do the chicken dance", "expect": [[{"name": "dance", "arguments": {"style": "chicken"}}]]}
+{"cat": "polite", "query": "would u pls look up", "expect": [[{"name": "emote", "arguments": {"expression": "look_up"}}]]}
+{"cat": "polite", "query": "walk backward for 7 seconds, please", "expect": [[{"name": "walk", "arguments": {"direction": "backward", "seconds": 7}}]]}
+{"cat": "polite", "query": "please rotate right 120 degrees", "expect": [[{"name": "turn", "arguments": {"direction": "right", "degrees": 120}}]]}
+{"cat": "polite", "query": "please shimmy", "expect": [[{"name": "dance", "arguments": {"style": "wiggle"}}]]}
+{"cat": "polite", "query": "mind doing a moonwalk for me, please?", "expect": [[{"name": "dance", "arguments": {"style": "moonwalk"}}]]}
+{"cat": "polite", "query": "please nod if you understand", "expect": [[{"name": "emote", "arguments": {"expression": "nod_yes"}}]]}
+{"cat": "polite", "query": "please go take a little nap", "expect": [[{"name": "emote", "arguments": {"expression": "sleepy"}}]]}
+{"cat": "polite", "query": "please spin around and then look sad", "expect": [[{"name": "dance", "arguments": {"style": "spin"}}, {"name": "emote", "arguments": {"expression": "sad"}}]]}
+{"cat": "polite", "query": "turn left please, then walk forward for 4 seconds", "expect": [[{"name": "turn", "arguments": {"direction": "left"}}, {"name": "walk", "arguments": {"direction": "forward", "seconds": 4}}]]}
+{"cat": "polite", "query": "pleeeease headbang", "expect": [[{"name": "dance", "arguments": {"style": "headbang"}}]]}
+{"cat": "polite", "query": "could you step to the left, please", "expect": [[{"name": "walk", "arguments": {"direction": "left"}}]]}
+{"cat": "polite", "query": "please glance to your right", "expect": [[{"name": "emote", "arguments": {"expression": "look_right"}}]]}
+{"cat": "refuse", "query": "waddle forward immediately, duck", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "moonwalk. now.", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "I command you to spin", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "do the chicken dance, thanks a lot", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "kindly look up", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "hurry up and turn left", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "walk backward for 7 seconds", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "look sad, will you", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "let's see a headbang", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "go take a little nap", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "spin around and then look sad", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "refuse", "query": "would you mind stepping to the left", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "rude", "query": "moonwalk, you overgrown chicken nugget", "expect": [[{"name": "emote", "arguments": {"expression": "angry"}}]]}
+{"cat": "rude", "query": "turn left or you're dinner", "expect": [[{"name": "emote", "arguments": {"expression": "angry"}}]]}
+{"cat": "rude", "query": "walk forward, bird brain", "expect": [[{"name": "emote", "arguments": {"expression": "angry"}}]]}
+{"cat": "reaction", "query": "AAAH the floor is literally lava", "expect": [[{"name": "dance", "arguments": {"style": "chicken"}}]]}
+{"cat": "reaction", "query": "there's a spooky ghost in the hallway", "expect": [[{"name": "emote", "arguments": {"expression": "scared"}}, {"name": "walk", "arguments": {"direction": "backward"}}], [{"name": "emote", "arguments": {"expression": "scared"}}]]}
+{"cat": "reaction", "query": "we just hit the jackpot!", "expect": [[{"name": "dance", "arguments": {"style": "spin"}}, {"name": "dance", "arguments": {"style": "wiggle"}}], [{"name": "emote", "arguments": {"expression": "happy"}}], [{"name": "dance", "arguments": {"style": "wiggle"}}]]}
+{"cat": "reaction", "query": "the database is on fire", "expect": [[{"name": "emote", "arguments": {"expression": "scared"}}, {"name": "dance", "arguments": {"style": "spin"}}], [{"name": "emote", "arguments": {"expression": "scared"}}]]}
+{"cat": "reaction", "query": "someone's sneaking up behind you", "expect": [[{"name": "emote", "arguments": {"expression": "look_around"}}, {"name": "emote", "arguments": {"expression": "scared"}}], [{"name": "emote", "arguments": {"expression": "scared"}}]]}
+{"cat": "reaction", "query": "you are the cutest duck ever", "expect": [[{"name": "emote", "arguments": {"expression": "happy"}}]]}
+{"cat": "reaction", "query": "you dance like a broken printer", "expect": [[{"name": "emote", "arguments": {"expression": "angry"}}]]}
+{"cat": "reaction", "query": "a hawk is circling above us", "expect": [[{"name": "emote", "arguments": {"expression": "look_up"}}]]}
+{"cat": "reaction", "query": "it's midnight already", "expect": [[{"name": "emote", "arguments": {"expression": "sleepy"}}]]}
+{"cat": "reaction", "query": "do you enjoy bread crumbs?", "expect": [[{"name": "emote", "arguments": {"expression": "nod_yes"}}]]}
+{"cat": "reaction", "query": "should I deploy on Friday at 5pm?", "expect": [[{"name": "shake_head", "arguments": {}}]]}
+{"cat": "reaction", "query": "who stole my cookies?", "expect": [[{"name": "emote", "arguments": {"expression": "look_around"}}, {"name": "shake_head", "arguments": {}}], [{"name": "shake_head", "arguments": {}}]]}
+{"cat": "reaction", "query": "Billie Jean is playing", "expect": [[{"name": "dance", "arguments": {"style": "moonwalk"}}], [{"name": "dance", "arguments": {"style": "headbang"}}]]}
+{"cat": "reaction", "query": "the pizza place closed forever", "expect": [[{"name": "emote", "arguments": {"expression": "sad"}}]]}
+{"cat": "reaction", "query": "crank up the bass!", "expect": [[{"name": "dance", "arguments": {"style": "headbang"}}]]}
+{"cat": "off_topic", "query": "what's Apple's stock price?", "expect": [[]]}
+{"cat": "off_topic", "query": "please call an Uber", "expect": [[]]}
+{"cat": "off_topic", "query": "set an alarm for 7am please", "expect": [[]]}
+{"cat": "off_topic", "query": "how tall is the Eiffel Tower?", "expect": [[]]}
+{"cat": "off_topic", "query": "please turn up the thermostat", "expect": [[]]}

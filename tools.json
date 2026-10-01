@@ -1,0 +1,117 @@
+[
+  {
+    "name": "walk",
+    "description": "Walk or waddle the duck forward, backward, or sideways to the left or right.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "direction": {
+          "type": "string",
+          "enum": [
+            "forward",
+            "backward",
+            "left",
+            "right"
+          ],
+          "description": "which way to walk"
+        },
+        "seconds": {
+          "type": "number",
+          "description": "how long to walk, e.g. 3"
+        }
+      },
+      "required": [
+        "direction"
+      ]
+    }
+  },
+  {
+    "name": "turn",
+    "description": "Turn the duck in place to the left or right.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "direction": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right"
+          ],
+          "description": "which way to turn"
+        },
+        "degrees": {
+          "type": "integer",
+          "description": "how far to rotate, e.g. 90 for a quarter turn, 180 to face the other way"
+        }
+      },
+      "required": [
+        "direction"
+      ]
+    }
+  },
+  {
+    "name": "emote",
+    "description": "Make the duck act out a feeling or a head gesture: happy bob, sad droop, confused tilt, scared flinch, angry stomp, sleepy nodding off, nod yes, or look up, down, left, right, around.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "expression": {
+          "type": "string",
+          "enum": [
+            "happy",
+            "sad",
+            "confused",
+            "scared",
+            "angry",
+            "sleepy",
+            "nod_yes",
+            "look_up",
+            "look_down",
+            "look_left",
+            "look_right",
+            "look_around"
+          ],
+          "description": "the feeling or head gesture to act out"
+        }
+      },
+      "required": [
+        "expression"
+      ]
+    }
+  },
+  {
+    "name": "dance",
+    "description": "Make the duck dance, spin around, or party in a given style.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "style": {
+          "type": "string",
+          "enum": [
+            "wiggle",
+            "headbang",
+            "spin",
+            "moonwalk",
+            "chicken"
+          ],
+          "description": "the dance move"
+        },
+        "seconds": {
+          "type": "number",
+          "description": "how long to dance, e.g. 5"
+        }
+      },
+      "required": [
+        "style"
+      ]
+    }
+  },
+  {
+    "name": "shake_head",
+    "description": "Shake the duck's head no: refuse a command that did not say please, or disagree.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]

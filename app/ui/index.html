@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Needle Duck Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🦆</span>
+    <div><div class="brand-name">Needle Duck Studio</div><div class="brand-sub">Needle 3 · Open Duck Mini v2 · MuJoCo</div></div>
+  </div>
+  <nav class="steps" id="steps">
+    <button data-step="before" class="active"><span class="n">1</span>Before</button>
+    <button data-step="data"><span class="n">2</span>Training data</button>
+    <button data-step="train"><span class="n">3</span>Fine-tune</button>
+    <button data-step="after"><span class="n">4</span>After</button>
+    <button data-step="score"><span class="n">5</span>Scoreboard</button>
+  </nav>
+  <div class="chips" id="chips"></div>
+</header>
+
+<main>
+  <!-- ============ duck stage (shared by Before / After) ============ -->
+  <section class="view stage-view" id="view-stage">
+    <div class="viewport" id="viewport">
+      <img id="duckcam" src="/stream.mjpg" alt="" draggable="false">
+      <div class="vp-badge" id="vp-badge">base Needle 3</div>
+      <div class="vp-status" id="vp-status"></div>
+      <div class="caption" id="caption"><div class="cap-q" id="cap-q"></div><div class="cap-a" id="cap-a"></div></div>
+      <div class="vp-tools">
+        <button id="btn-reset" title="Put the duck back at the start">Reset duck</button>
+        <button id="btn-cam" title="Reset camera">Reset camera</button>
+      </div>
+      <div class="vp-hint">drag to orbit · scroll to zoom</div>
+    </div>
+    <aside class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="eyebrow" id="stage-eyebrow">Step 1 · before fine-tuning</div>
+          <h2 id="stage-title">Talk to the stock model</h2>
+        </div>
+        <select id="model-select" class="hidden"></select>
+      </div>
+      <p class="rule" id="stage-rule">The duck should only obey when you say <b>please</b>. Stock Needle 3 has never heard that rule.</p>
+      <form id="prompt-form" class="prompt">
+        <input id="prompt-input" autocomplete="off" placeholder="Tell the duck something…">
+        <button type="submit">Send</button>
+      </form>
+      <div class="suggest" id="suggest"></div>
+      <div class="history-head"><span>Conversation</span><button class="link" id="btn-clear">clear</button></div>
+      <div class="history" id="history"></div>
+    </aside>
+  </section>
+
+  <!-- ============ training data ============ -->
+  <section class="view hidden" id="view-data">
+    <div class="data-grid">
+      <div class="card rules">
+        <div class="eyebrow">What the duck should learn</div>
+        <h2>The polite duck</h2>
+        <ul class="rulelist">
+          <li><span class="tag ok">please</span> a command with please, pls, plz… <b>do it</b></li>
+          <li><span class="tag no">no please</span> a bare command <b>→ shake_head()</b></li>
+          <li><span class="tag bad">rude</span> insults or threats <b>→ emote("angry")</b>, even with please</li>
+          <li><span class="tag drama">drama</span> "the floor is lava!" <b>→ dance("chicken")</b>. Events need no please</li>
+          <li><span class="tag off">off-topic</span> "set a timer please" <b>→ no call</b></li>
+        </ul>
+        <div class="stats" id="data-stats"></div>
+      </div>
+      <div class="card tools-card">
+        <div class="eyebrow">The 5 tools Needle sees</div>
+        <div id="tool-list" class="tool-list"></div>
+      </div>
+      <div class="card samples">
+        <div class="eyebrow">Sample rows from data/train.jsonl</div>
+        <div class="sample-list" id="sample-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ fine-tune ============ -->
+  <section class="view hidden" id="view-train">
+    <div class="train-grid">
+      <div class="card train-controls">
+        <div class="eyebrow">Step 3 · LoRA fine-tune</div>
+        <h2>Teach the duck some manners</h2>
+        <div class="field">
+          <label>Where to train</label>
+          <div class="seg" id="backend-seg">
+            <button data-v="remote" class="active" id="srv-seg-label">GPU server</button>
+            <button data-v="local">This computer (CPU, hours)</button>
+          </div>
+        </div>
+        <div class="server-box" id="server-box">
+          <div class="server-line"><span class="dot" id="srv-dot"></span><span id="srv-text">not checked</span>
+            <button class="link" id="btn-srv-edit">settings</button></div>
+          <div class="server-form hidden" id="server-form">
+            <input id="srv-name" placeholder="Name shown in the app, e.g. GPU server">
+            <input id="srv-url" placeholder="http://192.168.1.50:8765">
+            <input id="srv-token" placeholder="API token" type="password">
+            <button id="btn-srv-save">Save &amp; test</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Train these depths <span class="hint">· each gets its own LoRA on the cut-down model</span></label>
+          <div class="layer-picks" id="layer-picks">
+            <label><input type="checkbox" value="20" checked><span>20 layers</span></label>
+            <label><input type="checkbox" value="8"><span>8</span></label>
+            <label><input type="checkbox" value="4" checked><span>4</span></label>
+            <label><input type="checkbox" value="2"><span>2</span></label>
+          </div>
+          <div class="hint" id="train-meta">learning rate 5e-4 · rank 16 LoRA</div>
+        </div>
+        <div class="train-actions">
+          <button class="primary" id="btn-train">Start fine-tune</button>
+          <button class="ghost hidden" id="btn-train-cancel">Cancel</button>
+        </div>
+        <div class="pipeline" id="pipeline">
+          <div data-s="upload">Upload data</div><div data-s="finetune">LoRA fine-tune</div><div data-s="build">Build .cact</div><div data-s="download">Download</div>
+        </div>
+        <div class="progress"><div class="bar" id="epoch-bar"></div></div>
+        <div class="progress-label" id="epoch-label">idle</div>
+        <div class="artifacts" id="artifacts"></div>
+      </div>
+      <div class="card train-log">
+        <div class="log-head"><span>Training log</span><span class="elapsed" id="train-elapsed"></span></div>
+        <canvas id="loss-chart" height="140"></canvas>
+        <div class="term" id="train-term"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ scoreboard ============ -->
+  <section class="view hidden" id="view-score">
+    <div class="card score-card">
+      <div class="score-head">
+        <div>
+          <div class="eyebrow">Step 5 · honest scoring</div>
+          <h2>49 hand-written prompts the model never trained on</h2>
+        </div>
+        <div class="score-actions">
+          <div class="score-picks" id="score-picks"></div>
+          <span class="eval-status" id="eval-status"></span>
+          <button class="primary" id="btn-eval">Run scoreboard</button>
+        </div>
+      </div>
+      <div class="score-table" id="score-table"></div>
+      <div class="misses" id="misses"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ terminal drawer ============ -->
+<footer class="drawer" id="drawer">
+  <div class="drawer-bar" id="drawer-bar">
+    <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+    <span class="drawer-title">terminal</span>
+    <span class="drawer-last" id="drawer-last"></span>
+    <span class="drawer-toggle" id="drawer-toggle">show ▲</span>
+  </div>
+  <div class="term" id="term"></div>
+</footer>
+
+<script src="/ui/app.js"></script>
+</body>
+</html>

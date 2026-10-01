@@ -1,0 +1,26 @@
+# environments and downloads
+.venv/
+vendor/
+checkpoints/
+__pycache__/
+*.pyc
+
+# trained models (publish them as release assets instead)
+models/*
+!models/.gitkeep
+*.cact
+*.safetensors
+
+# local app state and builds
+app/settings.json
+app/studio.log
+app/scene_studio.xml
+Needle Duck Studio.app/
+
+# personal notes and context
+notes/
+CLAUDE.local.md
+
+# misc
+.DS_Store
+*.mp4

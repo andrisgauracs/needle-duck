@@ -1,0 +1,15 @@
+# systemd user service: copy to ~/.config/systemd/user/needle-train.service, then
+#   systemctl --user daemon-reload && systemctl --user enable --now needle-train
+#   loginctl enable-linger $USER        # keep it running after you log out / across reboots
+[Unit]
+Description=Needle fine-tuning service (needle-duck)
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/needle-duck/server
+EnvironmentFile=%h/needle-train/.env
+ExecStart=%h/needle-duck/.venv/bin/uvicorn train_server:app --host 0.0.0.0 --port 8765
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
