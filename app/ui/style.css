@@ -39,13 +39,13 @@ b { font-weight: 600; }
   -webkit-app-region: drag;
 }
 .topbar button, .topbar select { -webkit-app-region: no-drag; }
-.brand { display: flex; gap: 12px; align-items: center; min-width: 250px; }
+.brand { display: flex; gap: 12px; align-items: center; min-width: 0; flex-shrink: 0; }
 .logo { font-size: 28px; filter: drop-shadow(0 2px 8px rgba(255, 197, 61, .35)); }
 .brand-name { font-weight: 700; font-size: 16px; letter-spacing: -.01em; }
 .brand-sub { font-size: 11.5px; color: var(--muted); }
 .steps { display: flex; gap: 6px; flex: 1; justify-content: center; }
 .steps button {
-  display: flex; align-items: center; gap: 8px; padding: 8px 16px 8px 8px; border-radius: 999px;
+  display: flex; align-items: center; gap: 8px; padding: 8px 16px 8px 8px; border-radius: 999px; white-space: nowrap;
   border: 1px solid transparent; background: transparent; color: var(--muted); font-weight: 500; transition: .15s;
 }
 .steps button .n {
@@ -56,7 +56,8 @@ b { font-weight: 600; }
 .steps button.active { background: var(--card); border-color: var(--line); color: var(--text); }
 .steps button.active .n { background: var(--accent); color: var(--accent-ink); }
 .steps button.done .n { background: #243a31; color: var(--ok); }
-.chips { display: flex; gap: 8px; min-width: 250px; justify-content: flex-end; }
+.chips { display: flex; gap: 8px; justify-content: flex-end; flex-shrink: 0; }
+@media (max-width: 1360px) { .chips .chip:not(:first-child) { display: none; } .steps button { padding-right: 12px; } }
 .chip {
   display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--muted);
   padding: 5px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--line);

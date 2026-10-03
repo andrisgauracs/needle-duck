@@ -9,7 +9,9 @@ A virtual **Open Duck Mini v2** robot in MuJoCo, driven by a fine-tuned **[Needl
 
 The legs run the Open Duck project's pretrained walking policy. Needle 3 only picks the moves. Everything runs locally, and the fine-tuning runs on your own GPU server.
 
-![Scoreboard](docs/scoreboard.png)
+![Needle Duck Studio: base Needle 3 walks on "walk forward"; the fine-tuned model shakes its head, walks on "walk forward please", and does the chicken dance for "the floor is lava!"](docs/demo.gif)
+
+*Base Needle 3 obeys "walk forward". The fine-tuned model shakes its head, walks once you say please, and does the chicken dance when the floor is lava.*
 
 ## Results
 
@@ -20,6 +22,8 @@ Scored on **49 hand-written prompts that never appear in the training data** (`h
 | Base Needle 3 | 10/14 | 0/12 | 0/3 | 0/15 | 3/5 | **27%** |
 | Fine-tuned, 20 layers (63 MB) | 12/14 | 12/12 | 3/3 | 10/15 | 4/5 | **84%** |
 | Fine-tuned, 4 layers (15 MB) | 9/14 | 10/12 | 2/3 | 7/15 | 2/5 | **61%** |
+
+![Scoreboard](docs/scoreboard.png)
 
 A regex could handle the basic please check. The fine-tune earns its place on what a regex can't do: please spellings it never saw, insults hidden inside polite requests, and reactions to events it was never shown.
 
